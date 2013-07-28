@@ -7,6 +7,6 @@ setup(name='construct_server',
       description='A Python Construct Prototocol server library',
       author='Rob Gilson',
       author_email='d1plo1d@d1plo1d.com',
-      url='https://github.com/construct-protocol/construct-server-python',
+      url='https://github.com/construct-protocol/construct_server.py',
       packages= ["construct_server"]
      )
