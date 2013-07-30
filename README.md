@@ -37,7 +37,9 @@ The returned object will be stored as the print job's body.
 
 #### def start\_print\_job(self, job):
 
-#### def print_progress(self):
+#### def current\_print\_line(self):
+
+#### def total\_print\_lines(self, job_body):
 
 ### Events
 

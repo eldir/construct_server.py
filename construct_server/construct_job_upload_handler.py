@@ -12,9 +12,9 @@ class ConstructJobUploadHandler(tornado.web.RequestHandler):
     self.read_bytes = 0
     self.total_bytes = self.request.content_length
     self.file_str = StringIO()
-
-    session_uuid = self.get_argument("session_uuid", None)
+    self.target = ['session', 'job_upload_progress']
     self.websocket = None
+    session_uuid = self.get_argument("session_uuid", None)
     print session_uuid
     if session_uuid in self.application.clients:
       self.websocket = self.application.clients[session_uuid]
@@ -33,11 +33,10 @@ class ConstructJobUploadHandler(tornado.web.RequestHandler):
       self.request._on_request_body(self.file_str.getvalue(), self.uploaded)
 
   def process_chunk(self):
-    # print self.get_argument("session_uuid", None)
     print "bytes: (%i / %i)"%(self.read_bytes, self.total_bytes)
-    msg = {'uploaded': self.read_bytes, 'total': self.total_bytes}
-    if self.websocket != None:
-      self.websocket.send([dict(type="job_upload_progress_changed", data= msg)])
+    data = dict(uploaded = self.read_bytes, total = self.total_bytes)
+    event = dict(type = 'change', target = self.target, data = data)
+    if self.websocket != None: self.websocket.send([event])
 
   def uploaded(self):
     printer = self.application.printer

@@ -3,7 +3,7 @@ from pprint import pprint
 from construct_auth import construct_socket_auth
 from construct_cmd_parser import ConstructCmdParser
 
-CONSTRUCT_PROTOCOL_VERSION = [0,2,0]
+CONSTRUCT_PROTOCOL_VERSION = [0,3,0]
 
 class ConstructSocketHandler(tornado.websocket.WebSocketHandler):
   clients = []
