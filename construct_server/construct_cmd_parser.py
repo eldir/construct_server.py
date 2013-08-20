@@ -117,5 +117,11 @@ class ConstructCmdParser:
     "get_jobs": {
       'type': "none",
       'args_error': "get_jobs does not require any parameters."
-    }
+    },
+    "raw": {
+      'type': "array",
+      'args_error': textwrap.dedent("""
+        accepts raw commands and passes them on (ex: "raw G28" will pass on the home all axis command)
+      """).strip()
+    },
   }
